@@ -1,9 +1,18 @@
 package dev.augusto.java10x.CadastroDeNinjas.Ninjas.Controllers;
+import dev.augusto.java10x.CadastroDeNinjas.Ninjas.Models.NinjaModel;
+import dev.augusto.java10x.CadastroDeNinjas.Ninjas.Service.NinjaService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
+    private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas(){
@@ -21,8 +30,8 @@ public class NinjaController {
     }
 
     @GetMapping("/list-all")
-    public String getAllNinjas(){
-        return "Todos os Ninjas";
+    public List<NinjaModel> getAllNinjas(){
+        return ninjaService.listarNinjas();
     }
 
     @PutMapping("/update")
