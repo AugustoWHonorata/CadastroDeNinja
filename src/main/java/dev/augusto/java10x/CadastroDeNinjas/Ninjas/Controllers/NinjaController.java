@@ -24,14 +24,14 @@ public class NinjaController {
         return "Ninja criado";
     }
 
-    @GetMapping("/get-by-id")
-    public String getNinjaById(){
-        return "Mostrar Ninja por id";
+    @GetMapping("/list/{id}")
+    public NinjaModel getNinjaById(@PathVariable Long id){
+        return ninjaService.listNinjaById(id);
     }
 
-    @GetMapping("/list-all")
+    @GetMapping("/list")
     public List<NinjaModel> getAllNinjas(){
-        return ninjaService.listarNinjas();
+        return ninjaService.listNinjas();
     }
 
     @PutMapping("/update")
